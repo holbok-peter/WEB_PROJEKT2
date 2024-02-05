@@ -1,0 +1,25 @@
+body{
+    background-image: url("képek/background.png");
+    background-repeat: repeat-x;
+}
+
+.karakter{
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 80px;
+    height: 110px;
+    background-image: url("képek/karakter_kep.png");
+    background-repeat: no-repeat;
+    background-size: 80px;
+}
+
+.tudos{
+    position: absolute;
+    background-image: url("képek/tudos.png");
+    width: 35px;
+    height: 58px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+}
+
