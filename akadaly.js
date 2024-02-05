@@ -1,5 +1,6 @@
 class Akadaly{
-    constructor(){
-        
+    constructor(type, position){
+        this.type = type;
+        this.position = position;
     }
 }
