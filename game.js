@@ -1,5 +1,7 @@
 class Game{
-    constructor(){
-        
+    constructor(jetpack, score, gold){
+        this.jetpack = jetpack;
+        this.score = score;
+        this.gold = gold
     }
 }
