@@ -2,6 +2,7 @@ let karakter = document.querySelector(".karakter");
 let ellenseg = document.querySelector(".ellenseg");
 let tudos = document.querySelector(".tudos");
 let karakterPosition = karakter.style.bottom = 400;
+let maxMagassag = 800;
 let repülésiSebesség = 0;
 let repül = false;
 var jatekPalya = document.getElementById("jatekPalya");
@@ -9,19 +10,39 @@ var pontszam = 0;
 var jatekVege = false;
 
 
-document.addEventListener("keypress", ()=>{
-    repülésiSebesség += 30;
-    karakter.style.bottom = (karakterPosition + repülésiSebesség) + "px";
-    repül = true;
+
+document.addEventListener("keypress", (event)=>{
+    if(karakterPosition <= 810 && event.key == "w"){
+        repülésiSebesség += 1.2;
+        repülésiSebesség *= 1.1;
+        karakterPosition += repülésiSebesség;
+        karakter.style.bottom = karakterPosition + "px";
+        if(karakterPosition == maxMagassag){
+            
+        }
+    }
 });
 
 
-setInterval(()=>{
-    if(repülésiSebesség > 0){
-        repülésiSebesség -= 1;
-        karakter.style.bottom = (karakterPosition + repülésiSebesség) + "px";
+
+function esés(){
+    repülésiSebesség -= 1;
+    karakterPosition += repülésiSebesség
+    if(karakterPosition <= 400){
+        repülésiSebesség = 0;
+        karakterPosition = 400;
     }
-} , 1)
+    karakter.style.bottom = karakterPosition + "px";
+}
+
+
+
+setInterval(()=>{
+    if(repül = true){
+        esés()
+    }
+    console.log(repülésiSebesség)
+} , 30)
 
 
 function kepGeneral(type) {
