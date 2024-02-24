@@ -1,118 +1,137 @@
 let karakter = document.querySelector(".karakter");
-let ellenseg = document.querySelector(".ellenseg");
-let tudos = document.querySelector(".tudos");
-let karakterPosition = karakter.style.bottom = 400;
-let maxMagassag = 800;
+let karakterPosition = 400;
+let maxMagassag = 934;
 let repülésiSebesség = 0;
 let repül = false;
 var jatekPalya = document.getElementById("jatekPalya");
 var pontszam = 0;
 var jatekVege = false;
 
-
-
-document.addEventListener("keypress", (event)=>{
-    if(karakterPosition <= 810 && event.key == "w"){
-        repülésiSebesség += 1.2;
-        repülésiSebesség *= 1.1;
-        karakterPosition += repülésiSebesség;
-        karakter.style.bottom = karakterPosition + "px";
-        if(karakterPosition == maxMagassag){
-            
-        }
-    }
+document.addEventListener("keydown", (event) => {
+  if (karakterPosition <= maxMagassag && event.key === "w") {
+    repül = true;
+  }
 });
 
+document.addEventListener("keyup", () => {
+  repül = false;
+  repülésiSebesség = 0;
+});
 
+function esés() {
+  repülésiSebesség -= 0.5;
+  karakterPosition += repülésiSebesség;
 
-function esés(){
-    repülésiSebesség -= 1;
-    karakterPosition += repülésiSebesség
-    if(karakterPosition <= 400){
-        repülésiSebesség = 0;
-        karakterPosition = 400;
-    }
-    karakter.style.bottom = karakterPosition + "px";
+  if (karakterPosition <= 401) {
+    repülésiSebesség = 0;
+    karakterPosition = 400;
+  }
+
+  karakter.style.bottom = karakterPosition + "px";
 }
 
-
-
-setInterval(()=>{
-    if(repül = true){
-        esés()
+setInterval(() => {
+  if (repül) {
+    if (karakterPosition < maxMagassag) {
+      repülésiSebesség += 1.1;
+      repülésiSebesség *= 1.05;
     }
-    console.log(repülésiSebesség)
-} , 30)
+  } else {
+    esés();
+  }
 
+  if (karakterPosition + repülésiSebesség > maxMagassag) {
+    karakterPosition = maxMagassag;
+    repülésiSebesség = 0;
+  } else {
+    karakterPosition += repülésiSebesség;
+  }
+
+  karakter.style.bottom = karakterPosition + "px";
+}, 30);
 
 function kepGeneral(type) {
-    var kepek = document.createElement("div");
-    kepek.classList.add("item");
-    kepek.classList.add(type);
+  var kepek = document.createElement("div");
+  kepek.classList.add("item");
+  kepek.classList.add(type);
+  var randomY = Math.floor(Math.random() * (890 - 410) + 410);
+  kepek.style.bottom = randomY + "px";
+  kepek.style.left = jatekPalya.clientWidth + "px";
 
-    var random = Math.floor(Math.random() * (jatekPalya.clientHeight - 50));
-    kepek.style.top = random + "px";
-    kepek.style.left = jatekPalya.clientWidth + "px";
+  jatekPalya.appendChild(kepek);
 
-    jatekPalya.appendChild(kepek);
-
-    return kepek;
+  return kepek;
 }
 
 function mozgatas() {
-    var karakter = document.querySelectorAll(".item");
+  var karakter = document.querySelector(".karakter");
+  var karakterPositionTop = karakter.getBoundingClientRect().top;
+  var karakterPositionBottom = karakterPositionTop + karakter.offsetHeight;
 
-    karakter.forEach(function (item) {
-        var balPozicio = parseInt(item.style.left);
-        item.style.left = balPozicio - 5 + "px";
+  var items = document.querySelectorAll(".item");
 
-        if (
-            balPozicio < karakter.offsetLeft + karakter.offsetWidth &&
-            balPozicio + item.offsetWidth > karakter.offsetLeft &&
-            item.offsetTop < karakterww.offsetTop + karakter.offsetHeight &&
-            item.offsetHeight + item.offsetTop > karakter.offsetTop
-        ) {
-            if (item.classList.contains("coin")) {
-                pontszam++;
-                item.remove();
-                ujPontszam();
-            } else if (item.classList.contains("fireball")) {
-                vegetErtJatek();
-            }
-        }
+  items.forEach(function (item) {
+    var balPozicio = parseInt(item.style.left);
 
-        if (balPozicio < 0) {
-            item.remove();
-        }
-    });
-
-    if (!jatekVege) {
-        requestAnimationFrame(mozgatas);
+    if (
+      balPozicio < karakter.offsetLeft + karakter.offsetWidth &&
+      balPozicio + item.offsetWidth > karakter.offsetLeft &&
+      item.offsetTop < karakterPositionBottom &&
+      item.offsetHeight + item.offsetTop > karakterPositionTop
+    ) {
+      if (item.classList.contains("coin")) {
+        pontszam++;
+        item.remove();
+        ujPontszam();
+      } else if (item.classList.contains("fireball")) {
+        vegetErtJatek();
+        item.remove();
+      }
+    } else {
+      item.style.left = balPozicio - 5 + "px";
     }
+
+    if (balPozicio < 0) {
+      item.remove();
+    }
+  });
+
+  if (!jatekVege) {
+    requestAnimationFrame(mozgatas);
+  }
 }
 
 function ujPontszam() {
-    document.getElementById("pontszam").innerText = "Pontszám: " + pontszam;
+  document.getElementById("pontszam").innerText = "Coin: " + pontszam;
 }
 
 function vegetErtJatek() {
-    jatekVege = true;
-    alert("A játéknak vége! Maximális pontszámod: " + pontszam);
-    ujJatek();
-}
+  jatekVege = true;
+  var restartButton = document.createElement("button");
+  restartButton.innerText = "Restart Game";
+  restartButton.style.position = "fixed";
+  restartButton.style.top = "50%";
+  restartButton.style.left = "50%";
+  restartButton.style.transform = "translate(-50%, -50%)";  
+  restartButton.style.padding = "15px 30px";
+  restartButton.style.fontSize = "16px";
+  restartButton.style.border = "2px solid #3498db";
+  restartButton.style.borderRadius = "5px";
+  restartButton.style.background = "#3498db";
+  restartButton.style.color = "#fff";
+  restartButton.style.cursor = "pointer";
 
-function ujJatek() {
-    jatekVege = false;
-    pontszam = 0;
-    ujPontszam();
+  localStorage.setItem("finalScore", pontszam);
+
+  window.location.href = "fejlesztesek.html";
 }
 
 setInterval(function () {
-    kepGeneral("coin");
+  kepGeneral("coin");
 }, 1000);
 
 setInterval(function () {
-    kepGeneral("fireball");
+  kepGeneral("fireball");
 }, 2520);
 
 mozgatas();
