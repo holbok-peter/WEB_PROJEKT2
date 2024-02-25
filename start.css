@@ -1,0 +1,22 @@
+body{
+    background-image: url("képek/hatter2.webp");
+}
+
+#fooldal{
+    margin-top: 25%;
+    margin-left: 10%;
+    font-size: 30px;
+    background-color: lightcoral;
+    border-radius: 20px;
+    padding: 15px;
+    font-weight: bold;
+}
+
+#start_button{
+    margin-left: 10%;
+    font-size: 30px;
+    background-color: lightcoral;
+    border-radius: 20px;
+    padding: 15px;
+    font-weight: bold;
+}
