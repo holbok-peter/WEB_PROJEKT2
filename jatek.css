@@ -1,14 +1,16 @@
 body{
     background-image: url("képek/background.png");
     background-repeat: repeat-x;
+    background-size: contain;
+    overflow: hidden;
 }
 
 .karakter{
     position: absolute;
-    bottom: 400px;
-    left: 50px;
-    /* bottom: 160px;
-    left: 200px;  ki ne toroljetek*/ 
+    /* bottom: 400px;
+    left: 50px; */
+    bottom: 160px;
+    left: 200px;   
     width: 80px;
     height: 110px;
     background-image: url("képek/karakter_kep.png");

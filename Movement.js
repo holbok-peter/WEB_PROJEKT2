@@ -61,10 +61,6 @@ function MoveScientist() {
 }
 
 
-<<<<<<< HEAD
 
-export {Mozgas, MoveScientist};
-=======
-export {Mozgas, karakterPosition};
->>>>>>> bee583aa69a049e12e383ee00e838984c7ae50f9
+export {Mozgas, MoveScientist,karakterPosition};
 
