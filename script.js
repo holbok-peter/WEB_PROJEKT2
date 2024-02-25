@@ -68,20 +68,20 @@ function mozgatas() {
     ) {
       if (item.classList.contains("fireball")) {
         life--;
-        lkiir.innerhtml = life;
+        lkiir.innerHTML = life
         if(life<=0){
           vegetErtJatek()
         }
-        
         item.remove();
+        
       } else if (item.classList.contains("tüske")) {
         life--;
-        lkiir.innerhtml = life;
+        lkiir.innerHTML = life;
         if(life<=0){
           vegetErtJatek()
         }
-        
         item.remove();
+        
       }
     } else {
       item.style.left = balPozicio - 5 + "px";
