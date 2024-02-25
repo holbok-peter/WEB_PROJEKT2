@@ -116,3 +116,18 @@ body{
 .item.coin-shower-coin {
     animation: pulse 1s infinite;
 }
+
+#life{
+    position: fixed;
+    top: 140px;
+    left: 50px;
+    font-size: 24px;
+    color: white;
+}
+.heart{
+    background-image: url("/képek/sziv_piros.png");
+    position: fixed;
+    top: 140px;
+    left: 50px;
+    
+}
