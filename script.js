@@ -158,8 +158,8 @@ function vegetErtJatek() {
   restartButton.style.cursor = "pointer";
 
   localStorage.setItem("finalScore", pontszam);
-
-  window.location.href = "fejlesztesek.html";
+  alert(`A karaktered életet vesztette! Maximális pontszámod: ${pontszam}`)
+  window.location.href = "start.html";
 }
 
 var normalCoin = setInterval(function () {
@@ -188,6 +188,41 @@ function tudosMozgas() {
   kepMozgas();
   setInterval(kepMozgas, Math.floor(Math.random() * 2000) + 1000);
 }
+
+function getRandomPosition(maxWidth) {
+  var x = Math.random() * (maxWidth - 100);
+  return { x: x};
+}
+
+function randomTuske() {
+  var img = new Image();
+  img.src = 'képek/tuske.png';
+
+  img.onload = function() {
+    var maxWidth = window.innerWidth;
+    var randomKep = document.getElementById('tuske.png');
+
+    if (!randomKep) {
+      randomKep = document.createElement('img');
+      randomKep.id = 'tuske.png';
+      randomKep.style.position = 'absolute';
+      document.body.appendChild(randomKep);
+    }
+
+    randomKep.src = img.src;
+    var pozicio = getRandomPosition(maxWidth);
+    randomKep.style.left = pozicio.x + 'px';
+
+    // Mozgatás időközönként
+    setInterval(function() {
+      pozicio = getRandomPosition(maxWidth);
+      randomKep.style.left = pozicio.x + 'px';
+    }, Math.random() * 5000 + 1000);
+  };
+
+}
+
+randomTuske();
 
 kepMozgas();
 
