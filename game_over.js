@@ -6,11 +6,32 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function restartGame() {
-    window.location.href = "index.html";
+    window.location.href = "jatek.html";
 }
 
 function upgradeFeature1() {
-    alert("Feature 1 Upgraded!");
+    alert("Most gyorsabb lett a karaktered!")
+    restartGame(
+        setInterval(() => {
+            if (repül) {
+              if (karakterPosition < maxMagassag) {
+                repülésiSebesség += 1.5;
+                repülésiSebesség *= 1;
+              }
+            } else {
+              esés();
+            }
+          
+            if (karakterPosition + repülésiSebesség > maxMagassag) {
+              karakterPosition = maxMagassag;
+              repülésiSebesség = 0;
+            } else {
+              karakterPosition += repülésiSebesség;
+            }
+          
+            karakter.style.bottom = karakterPosition + "px";
+          }, 15)
+    );
 }
 
 function upgradeFeature2() {
