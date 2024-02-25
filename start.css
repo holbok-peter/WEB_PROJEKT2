@@ -1,22 +1,45 @@
-body{
-    background-image: url("képek/hatter2.webp");
+body {
+  background-image: url("képek/hatter2.webp");
 }
 
-#fooldal{
-    margin-top: 25%;
+#fooldal {
+  margin-top: 25%;
+  margin-left: 10%;
+  font-size: 30px;
+  background-color: lightcoral;
+  border-radius: 20px;
+  padding: 15px;
+  font-weight: bold;
+}
+
+#start_button {
+  margin-left: 10%;
+  font-size: 30px;
+  background-color: lightcoral;
+  border-radius: 20px;
+  padding: 15px;
+  font-weight: bold;
+}
+
+#fejl_button {
     margin-left: 10%;
     font-size: 30px;
     background-color: lightcoral;
     border-radius: 20px;
     padding: 15px;
     font-weight: bold;
+    animation: pulse 2s infinite;
 }
-
-#start_button{
-    margin-left: 10%;
-    font-size: 30px;
-    background-color: lightcoral;
-    border-radius: 20px;
-    padding: 15px;
-    font-weight: bold;
-}
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  

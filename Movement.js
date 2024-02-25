@@ -57,7 +57,7 @@ function Mozgas(){
 
 
 function MoveScientist() {
-  scientistXPosition += 2; // You can adjust the speed as needed
+  scientistXPosition += 2; 
   tudos.style.left = scientistXPosition + "px";
 }
 
