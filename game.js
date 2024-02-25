@@ -1,5 +1,6 @@
 import { Mozgas, MoveScientist, karakterPosition } from "./Movement.js";
 import { coinGeneralas, coinCheck, coinMove } from "./coin.js";
+import { fireballSpawn } from "./script.js";
 let pontszam = document.querySelector(".goldok");
 let jatekVege = false;
 let score = 0;
@@ -8,10 +9,9 @@ let life = 3;
 
 Mozgas();
 setInterval(() => {
-    
-   gold=  coinCheck(karakterPosition, gold);
+  gold = coinCheck(karakterPosition, gold);
   coinMove();
- pontszam.innerHTML = gold;
+  pontszam.innerHTML = gold;
 }, 5);
 
 setInterval(() => {

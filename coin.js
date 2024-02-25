@@ -95,10 +95,10 @@ function coinDivDel() {
 function coinPickup(karaktery, péz) {
   coins.forEach(function (c, index) {
     if (
-      c.x < 200 &&
-      c.x > 120 &&
+      c.x < 280 &&
+      c.x > 180 &&
       karaktery > c.y - 40 &&
-      karaktery < c.y + 200 &&
+      karaktery < c.y + 110 &&
       coins.indexOf(c) !== -1
     ) {
       péz++;
@@ -119,7 +119,6 @@ function coinCheck(kry, péz) {
   coinDivAdd();
   coinDivDel();
   return coinPickup(kry, péz);
-  
 }
 
 export { coinGeneralas, coinCheck, coinMove };
