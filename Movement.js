@@ -54,7 +54,12 @@ function Mozgas(){
 }
 
 
+function MoveScientist() {
+  scientistXPosition += 2; // You can adjust the speed as needed
+  tudos.style.left = scientistXPosition + "px";
+}
 
 
-export {Mozgas};
+
+export {Mozgas, MoveScientist};
 
