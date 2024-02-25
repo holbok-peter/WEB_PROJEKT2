@@ -32,36 +32,32 @@ function eses() {
 
 document.addEventListener("keypress", (event) => {
   repul = true;
-  karakter.style.backgroundImage = "url('képek/karakter_kep.png')"
+  karakter.style.backgroundImage = "url('képek/karakter_kep.png')";
 });
 document.addEventListener("keyup", () => {
   repul = false;
-  karakter.style.backgroundImage = "url('képek/nem_repul.png')"
+  karakter.style.backgroundImage = "url('képek/nem_repul.png')";
 });
 
-function Mozgas(){
-    if (!repul) {
-        eses();
-      } else {
-        jetpackRepules();
-      }
-      if(karakterPosition <160){
-        karakterPosition = 160;
-      }
-      if(karakterPosition > maxMagassag){
-        repülésiSebesség =0;
-        karakterPosition = maxMagassag;
-      }
-      requestAnimationFrame(Mozgas)
+function Mozgas() {
+  if (!repul) {
+    eses();
+  } else {
+    jetpackRepules();
+  }
+  if (karakterPosition < 160) {
+    karakterPosition = 160;
+  }
+  if (karakterPosition > maxMagassag) {
+    repülésiSebesség = 0;
+    karakterPosition = maxMagassag;
+  }
+  requestAnimationFrame(Mozgas);
 }
 
-
 function MoveScientist() {
-  scientistXPosition += 2; 
+  scientistXPosition += 2;
   tudos.style.left = scientistXPosition + "px";
 }
 
-
-
-export {Mozgas, MoveScientist,karakterPosition};
-
+export { Mozgas, MoveScientist, karakterPosition };

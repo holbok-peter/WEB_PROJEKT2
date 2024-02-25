@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +35,9 @@
             margin-top: 20px;
         }
 
-        .upgrade-options {
+        .upgrade-options,
+        .upgrade-option1,
+        .upgrade-option2 {
             display: flex;
             justify-content: space-around;
             margin-top: 30px;
@@ -49,12 +52,13 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Upgrade Your Game!</h1>
     <p>Your final score: <span id="finalScore"></span></p>
 
     <div class="upgrade-options">
-        <div class="upgrade-option1" >Upgrade Feature 1</div>
+        <div class="upgrade-option1">Upgrade Feature 1</div>
         <div class="upgrade-option2" onclick="upgradeFeature2()">Upgrade Feature 2</div>
     </div>
 
@@ -62,4 +66,5 @@
 
     <script src="upgrade.js"></script>
 </body>
+
 </html>

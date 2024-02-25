@@ -10,7 +10,7 @@ var pontszam = 0;
 var jatekVege = false;
 let life = 3;
 let lkiir = document.querySelector(".lf");
-lkiir.innerHTML = life
+lkiir.innerHTML = life;
 
 function getRandomSpawnInterval(from, to) {
   return Math.floor(Math.random() * (to - from) + from);
@@ -68,20 +68,18 @@ function mozgatas() {
     ) {
       if (item.classList.contains("fireball")) {
         life--;
-        lkiir.innerHTML = life
-        if(life<=0){
-          vegetErtJatek()
+        lkiir.innerHTML = life;
+        if (life <= 0) {
+          vegetErtJatek();
         }
         item.remove();
-        
       } else if (item.classList.contains("tüske")) {
         life--;
         lkiir.innerHTML = life;
-        if(life<=0){
-          vegetErtJatek()
+        if (life <= 0) {
+          vegetErtJatek();
         }
         item.remove();
-        
       }
     } else {
       item.style.left = balPozicio - 5 + "px";

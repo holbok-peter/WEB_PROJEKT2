@@ -6,7 +6,6 @@ let jatekVege = false;
 let score = 0;
 let gold = 0;
 
-
 Mozgas();
 setInterval(() => {
   gold = coinCheck(karakterPosition, gold);
