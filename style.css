@@ -7,6 +7,8 @@ body{
     position: absolute;
     bottom: 400px;
     left: 50px;
+    /* bottom: 160px;
+    left: 200px;  ki ne toroljetek*/ 
     width: 80px;
     height: 110px;
     background-image: url("képek/karakter_kep.png");
@@ -27,6 +29,11 @@ body{
     position: absolute;
     width: 50px;
     height: 50px;
+}
+.gold {
+    background-image: url(képek/coin.png);
+    width: 41px;
+    height: 43px;
 }
   
 .coin {
