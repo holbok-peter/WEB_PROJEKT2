@@ -150,4 +150,21 @@ setInterval(function () {
   kepGeneral("fireball");
 }, 2520);
 
+function kepMozgas() {
+  var img = document.getElementById('tudos_mozgas');
+  var maxX = window.innerWidth - img.clientWidth;
+  var maxY = window.innerHeight - img.clientHeight;
+  var newX = Math.floor(Math.random() * maxX);
+  var newY = Math.floor(Math.random() * maxY);
+  img.style.left = newX + 'px';
+  img.style.top = newY + 'px';
+}
+
+function tudosMozgas() {
+  kepMozgas();
+  setInterval(kepMozgas, Math.floor(Math.random() * 2000) + 1000);
+}
+
+kepMozgas();
+
 mozgatas();
