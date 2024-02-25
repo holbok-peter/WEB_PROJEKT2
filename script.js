@@ -2,8 +2,8 @@ let karakter = document.querySelector(".karakter");
 let karakterPosition = 400;
 let maxMagassag = 934;
 let repülésiSebesség = 0;
-let coinShowerActive = false; 
-let coinSpawnRate = 1000; 
+let coinShowerActive = false;
+let coinSpawnRate = 1000;
 let repül = false;
 var jatekPalya = document.getElementById("jatekPalya");
 var pontszam = 0;
@@ -20,14 +20,19 @@ document.addEventListener("keyup", () => {
   repülésiSebesség = 0;
 });
 
+function getRandomSpawnInterval(from, to) {
+  // Calculate a random interval between 5 and 15 seconds (in milliseconds)
+  return Math.floor(Math.random() * (to - from + 1) + from);
+}
+
 function startCoinShower() {
-    coinShowerActive = true;
-    coinSpawnRate = 500; // Adjust the spawn rate during the event
-    setTimeout(() => {
-      coinShowerActive = false;
-      coinSpawnRate = 1000; // Reset the spawn rate after the event
-    }, 5000); // The coin shower event lasts for 10 seconds (adjust as needed)
-  }
+  coinShowerActive = true;
+  coinSpawnRate = 500; // Adjust the spawn rate during the event
+  setTimeout(() => {
+    coinShowerActive = false;
+    coinSpawnRate = 1000; // Reset the spawn rate after the event
+  }, 5000); // The coin shower event lasts for 10 seconds (adjust as needed)
+}
 
 function esés() {
   repülésiSebesség -= 0.5;
@@ -62,60 +67,75 @@ setInterval(() => {
 }, 30);
 
 function kepGeneral(type) {
-    var kepek = document.createElement("div");
-    kepek.classList.add("item");
-    kepek.classList.add(type);
-    var randomY = Math.floor(Math.random() * (890 - 410) + 410);
-  
-    // Adjust spawn rate during the coin shower event
-    var spawnRate = coinShowerActive ? coinSpawnRate / 2 : coinSpawnRate;
-  
-    kepek.style.bottom = randomY + "px";
-    kepek.style.left = jatekPalya.clientWidth + "px";
-  
-    jatekPalya.appendChild(kepek);
-}  
+  var kepek = document.createElement("div");
+  kepek.classList.add("item");
+  kepek.classList.add(type);
+  var randomY = Math.floor(Math.random() * (890 - 410) + 410);
+
+  kepek.style.bottom = randomY + "px";
+  kepek.style.left = jatekPalya.clientWidth + "px";
+
+  // Randomly decide whether it's a regular coin or a special coin
+  // Ensure special coins only during the coin shower
+
+  // Specify the correct image paths for coins and black coins
+  if (type === "coin") {
+    kepek.style.backgroundImage = "url('képek/coin.png')";
+  } else if (type === "fireball") {
+    kepek.style.backgroundImage = "url('képek/fireball.png')";
+  } else if (type === "black_coin") {
+    kepek.style.backgroundImage = "url('képek/black_coin.jpg')";
+    kepek.classList.add("black_coin"); // Add the coin shower class for styling
+    kepek.style.border = "2px solid #ffcc00"; // Add border styling for special coins
+    kepek.style.animation = "pulse 1s infinite"; // Add pulsing effect for special coins
+  }
+
+  kepek.style.backgroundSize = "cover";
+
+  jatekPalya.appendChild(kepek);
+}
 
 function mozgatas() {
-    var karakter = document.querySelector(".karakter");
-    var karakterPositionTop = karakter.getBoundingClientRect().top;
-    var karakterPositionBottom = karakterPositionTop + karakter.offsetHeight;
-  
-    var items = document.querySelectorAll(".item");
-  
-    items.forEach(function (item) {
-      var balPozicio = parseInt(item.style.left);
-  
-      if (
-        balPozicio < karakter.offsetLeft + karakter.offsetWidth &&
-        balPozicio + item.offsetWidth > karakter.offsetLeft &&
-        item.offsetTop < karakterPositionBottom &&
-        item.offsetHeight + item.offsetTop > karakterPositionTop
-      ) {
-        if (item.classList.contains("coin")) {
-          pontszam++;
-          item.remove();
-          ujPontszam();
-          if (item.classList.contains("specialCoin")) {
-            startCoinShower();
-          }
-        } else if (item.classList.contains("fireball")) {
-          vegetErtJatek();
-          item.remove();
-        }
-      } else {
-        item.style.left = balPozicio - 5 + "px";
-      }
-  
-      if (balPozicio < 0) {
+  var karakter = document.querySelector(".karakter");
+  var karakterPositionTop = karakter.getBoundingClientRect().top;
+  var karakterPositionBottom = karakterPositionTop + karakter.offsetHeight;
+
+  var items = document.querySelectorAll(".item");
+
+  items.forEach(function (item) {
+    var balPozicio = parseInt(item.style.left);
+
+    if (
+      balPozicio < karakter.offsetLeft + karakter.offsetWidth &&
+      balPozicio + item.offsetWidth > karakter.offsetLeft &&
+      item.offsetTop < karakterPositionBottom &&
+      item.offsetHeight + item.offsetTop > karakterPositionTop
+    ) {
+      if (item.classList.contains("coin")) {
+        pontszam++;
+        item.remove();
+        ujPontszam();
+      } else if (item.classList.contains("fireball")) {
+        vegetErtJatek();
+        item.remove();
+      } else if (item.classList.contains("black_coin")) {
+        pontszam += 5;
+        ujPontszam();
         item.remove();
       }
-    });
-  
-    if (!jatekVege) {
-      requestAnimationFrame(mozgatas);
+    } else {
+      item.style.left = balPozicio - 5 + "px";
     }
+
+    if (balPozicio < 0) {
+      item.remove();
+    }
+  });
+
+  if (!jatekVege) {
+    requestAnimationFrame(mozgatas);
   }
+}
 
 function ujPontszam() {
   document.getElementById("pontszam").innerText = "Coin: " + pontszam;
@@ -128,7 +148,7 @@ function vegetErtJatek() {
   restartButton.style.position = "fixed";
   restartButton.style.top = "50%";
   restartButton.style.left = "50%";
-  restartButton.style.transform = "translate(-50%, -50%)";  
+  restartButton.style.transform = "translate(-50%, -50%)";
   restartButton.style.padding = "15px 30px";
   restartButton.style.fontSize = "16px";
   restartButton.style.border = "2px solid #3498db";
@@ -142,22 +162,26 @@ function vegetErtJatek() {
   window.location.href = "fejlesztesek.html";
 }
 
-setInterval(function () {
+var normalCoin = setInterval(function () {
   kepGeneral("coin");
-}, 1000);
+}, getRandomSpawnInterval(500, 1500));
 
-setInterval(function () {
+var fireballSpawn = setInterval(function () {
   kepGeneral("fireball");
-}, 2520);
+}, getRandomSpawnInterval(2000, 3000));
+
+var blackCoinInterval = setInterval(function () {
+  kepGeneral("black_coin");
+}, getRandomSpawnInterval(5000, 15000));
 
 function kepMozgas() {
-  var img = document.getElementById('tudos_mozgas');
+  var img = document.getElementById("tudos_mozgas");
   var maxX = window.innerWidth - img.clientWidth;
   var maxY = window.innerHeight - img.clientHeight;
   var newX = Math.floor(Math.random() * maxX);
   var newY = Math.floor(Math.random() * maxY);
-  img.style.left = newX + 'px';
-  img.style.top = newY + 'px';
+  img.style.left = newX + "px";
+  img.style.top = newY + "px";
 }
 
 function tudosMozgas() {

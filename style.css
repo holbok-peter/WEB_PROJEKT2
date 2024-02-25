@@ -95,3 +95,22 @@ body{
     position: absolute;
     bottom: 5px;
 }
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        border-color: #ffcc00;
+    }
+    50% {
+        transform: scale(1.1);
+        border-color: #ffcc00;
+    }
+    100% {
+        transform: scale(1);
+        border-color: #ffcc00;
+    }
+}
+
+.item.coin-shower-coin {
+    animation: pulse 1s infinite;
+}
