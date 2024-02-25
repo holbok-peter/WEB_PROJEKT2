@@ -72,7 +72,7 @@ function coinDivAdd() {
 
 function coinMove() {
   coins.forEach(function (c) {
-    c.x -= 2;
+    c.x -= 1;
     c.div.style.left = c.x + "px";
   });
 }
@@ -111,8 +111,8 @@ function coinPickup(karaktery, péz) {
 
 function coinGeneralas() {
   let typernd = Math.round(Math.random() * 4);
-  let posrnd = Math.round(Math.random() * 600);
-  +300;
+  let posrnd = Math.round(Math.random() * 500);
+  +750;
   new CoinGeneral(typernd, posrnd);
 }
 function coinCheck(kry, péz) {

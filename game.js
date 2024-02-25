@@ -5,7 +5,7 @@ let pontszam = document.querySelector(".goldok");
 let jatekVege = false;
 let score = 0;
 let gold = 0;
-let life = 3;
+
 
 Mozgas();
 setInterval(() => {
