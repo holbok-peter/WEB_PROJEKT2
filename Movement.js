@@ -32,10 +32,11 @@ function eses() {
 
 document.addEventListener("keypress", (event) => {
   repul = true;
-
+  karakter.style.backgroundImage = "url('képek/karakter_kep.png')"
 });
 document.addEventListener("keyup", () => {
   repul = false;
+  karakter.style.backgroundImage = "url('képek/nem_repul.png')"
 });
 
 function Mozgas(){
