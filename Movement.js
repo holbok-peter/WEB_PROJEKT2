@@ -2,7 +2,7 @@ let karakter = document.querySelector(".karakter");
 let ellenseg = document.querySelector(".ellenseg");
 let tudos = document.querySelector(".tudos");
 let karakterPosition = (karakter.style.bottom = 160);
-let maxMagassag = 800;
+let maxMagassag = 900;
 let repülésiSebesség = 0;
 let repul = false;
 var jatekPalya = document.getElementById("jatekPalya");
@@ -47,10 +47,11 @@ function Mozgas(){
       if(karakterPosition <160){
         karakterPosition = 160;
       }
-      if(karakterPosition > 860){
+      if(karakterPosition > maxMagassag){
         repülésiSebesség =0;
-        karakterPosition = 860;
+        karakterPosition = maxMagassag;
       }
+      requestAnimationFrame(Mozgas)
 }
 
 
@@ -60,6 +61,10 @@ function MoveScientist() {
 }
 
 
+<<<<<<< HEAD
 
 export {Mozgas, MoveScientist};
+=======
+export {Mozgas, karakterPosition};
+>>>>>>> bee583aa69a049e12e383ee00e838984c7ae50f9
 
