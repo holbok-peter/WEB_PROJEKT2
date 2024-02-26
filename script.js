@@ -1,3 +1,6 @@
+import { gold } from "./game.js";
+// import { fireballSpawn } from "./script.js";
+
 let karakter = document.querySelector(".karakter");
 let karakterPosition = 160;
 let maxMagassag = 934;
@@ -18,6 +21,14 @@ lkiir.innerHTML = life;
 
 function getRandomSpawnInterval(from, to) {
   return Math.floor(Math.random() * (to - from) + from);
+}
+function getBankCoins(){
+  return Number(localStorage.getItem("bank")) + gold;
+}
+
+function setBank(){
+  localStorage.setItem("bank", getBankCoins());
+  console.log(localStorage.getItem("bank"));
 }
 
 function kepGeneral(type) {
@@ -74,6 +85,7 @@ function mozgatas() {
         life--;
         lkiir.innerHTML = life;
         if (life <= 0) {
+          setBank()
           vegetErtJatek();
         }
         item.remove();
@@ -81,6 +93,7 @@ function mozgatas() {
         life--;
         lkiir.innerHTML = life;
         if (life <= 0) {
+          setBank()
           vegetErtJatek();
         }
         item.remove();
@@ -115,13 +128,14 @@ function vegetErtJatek() {
   restartButton.style.color = "#fff";
   restartButton.style.cursor = "pointer";
 
-  localStorage.setItem("finalScore", pontszam);
-
+  localStorage.setItem("finalScore", gold);
+  
   window.location.href = "fejlesztesek.html";
+  ujPontszam()
 }
 
 function ujPontszam() {
-  document.getElementById("pontszam").innerText = "Coin: " + pontszam;
+  document.getElementById("finalScore").innerText = "Coin: " + gold;
 }
 
 var fireballSpawn = setInterval(function () {

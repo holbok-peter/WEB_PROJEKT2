@@ -5,6 +5,7 @@ let pontszam = document.querySelector(".goldok");
 let jatekVege = false;
 let score = 0;
 let gold = 0;
+localStorage.setItem("bank", 0)
 
 Mozgas();
 setInterval(() => {
@@ -16,3 +17,5 @@ setInterval(() => {
 setInterval(() => {
   coinGeneralas();
 }, 2000);
+
+export {gold};
