@@ -20,7 +20,7 @@ if (finalScore >= 20 && fejl1.addEventListener("click")) {
 
 
 function upgradeFeature2() {
-  alert("Feature 2 Upgraded!");
+  alert("Feature 2 Upgraded!: Új max hp: 5");
   localStorage.setItem("liffe", 5);
 }
 
