@@ -9,6 +9,10 @@ var jatekPalya = document.getElementById("jatekPalya");
 var pontszam = 0;
 var jatekVege = false;
 let life = 3;
+if(localStorage.getItem("liffe")>3){
+
+  life = localStorage.getItem("liffe")
+}
 let lkiir = document.querySelector(".lf");
 lkiir.innerHTML = life;
 

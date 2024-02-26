@@ -21,6 +21,7 @@ upgradeFeature1();
 
 function upgradeFeature2() {
   alert("Feature 2 Upgraded!");
+  localStorage.setItem("liffe", 5);
 }
 
 function writeProgress(finalScore) {
