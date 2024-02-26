@@ -1,5 +1,5 @@
 let karakter = document.querySelector(".karakter");
-let karakterPosition = 400;
+let karakterPosition = 160;
 let maxMagassag = 934;
 let repülésiSebesség = 0;
 let coinShowerActive = false;

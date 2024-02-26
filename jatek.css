@@ -19,12 +19,7 @@ body {
 }
 
 .tudos {
-  position: absolute;
-  background-image: url("képek/tudos.png");
-  width: 35px;
-  height: 58px;
-  background-repeat: no-repeat;
-  background-size: 30px;
+ display: none;
 }
 
 .item {
@@ -94,8 +89,7 @@ body {
 }
 
 #tudos_mozgas {
-  position: absolute;
-  bottom: 5px;
+  display: none;
 }
 
 @keyframes pulse {

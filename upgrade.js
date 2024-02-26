@@ -17,7 +17,7 @@ if (finalScore >= 20 && fejl1.addEventListener("click")) {
   }
 }
 
-upgradeFeature1();
+
 
 function upgradeFeature2() {
   alert("Feature 2 Upgraded!");
